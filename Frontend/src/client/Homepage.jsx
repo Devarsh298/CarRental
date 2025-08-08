@@ -13,14 +13,14 @@ const Homepage = () => {
   const [pickupDate, setPickupDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   // Fetch products from backend
   const fetchProducts = async () => {
-    setIsLoading(true);
     try {
+      // setIsLoading(true);
       const { data } = await axios.get(`${URI}/api/product/getAllProducts`);
       if (data.data) {
         // console.log(data.data);
@@ -29,8 +29,6 @@ const Homepage = () => {
       }
     } catch (error) {
       console.error("Failed to fetch products:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -149,76 +147,77 @@ const Homepage = () => {
       </section>
 
       {/* Featured Vehicles */}
-      {isLoading ? (
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-6 text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Featured Vehicles
-            </h2>
-            <p className="text-gray-600">
-              Explore our selection of premium vehicles available for your next
-              adventure.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-6">
-            {products.map((car) => (
-              <div
-                key={car._id}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="relative">
-                  <img
-                    src={car.image}
-                    alt={`${car.brand} ${car.model}`}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
-                    Featured
-                  </div>
-                  <div className="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-lg">
-                    ${car.dailyPrice}/day
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    {car.brand} {car.model}
-                  </h3>
-                  <p className="text-gray-600">{car.year}</p>
-
-                  <div className="grid grid-cols-2 gap-4 my-4 text-sm text-gray-600">
-                    <p>👥 {car.seatingCapacity} seats</p>
-                    <p>⚙️ {car.transmission}</p>
-                    <p>⛽ {car.fuelType}</p>
-                    <p>📍 {car.location}</p>
-                  </div>
-
-                  <button
-                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
-                    onClick={() => {
-                      handleRentNow(car._id);
-                      scrollTo(0, 0);
-                    }}
-                  >
-                    Rent Now
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <button className="text-blue-600 hover:text-blue-700 font-semibold">
-              Explore all cars →
-            </button>
-          </div>
-        </section>
+      {/* {isLoading ? (
+        
       ) : (
         <div className="text-blue-600 flex items-center justify-center py-5">
           Loading cars...
         </div>
-      )}
+      )} */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Featured Vehicles
+          </h2>
+          <p className="text-gray-600">
+            Explore our selection of premium vehicles available for your next
+            adventure.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-6">
+          {products.map((car) => (
+            <div
+              key={car._id}
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <div className="relative">
+                <img
+                  src={car.image}
+                  alt={`${car.brand} ${car.model}`}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                  Featured
+                </div>
+                <div className="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-lg">
+                  ${car.dailyPrice}/day
+                </div>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900">
+                  {car.brand} {car.model}
+                </h3>
+                <p className="text-gray-600">{car.year}</p>
+
+                <div className="grid grid-cols-2 gap-4 my-4 text-sm text-gray-600">
+                  <p>👥 {car.seatingCapacity} seats</p>
+                  <p>⚙️ {car.transmission}</p>
+                  <p>⛽ {car.fuelType}</p>
+                  <p>📍 {car.location}</p>
+                </div>
+
+                <button
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
+                  onClick={() => {
+                    handleRentNow(car._id);
+                    scrollTo(0, 0);
+                  }}
+                >
+                  Rent Now
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <button className="text-blue-600 hover:text-blue-700 font-semibold">
+            Explore all cars →
+          </button>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-20">
