@@ -44,7 +44,7 @@ const AddCar = () => {
       const token = localStorage.getItem("sellerToken");
       if (token) {
         const { data } = await axios.post(
-          "http://localhost:4000/api/product/add",
+          "https://carrental-backend-dsbl.onrender.com/api/product/add",
           formData,
           {
             withCredentials: true,

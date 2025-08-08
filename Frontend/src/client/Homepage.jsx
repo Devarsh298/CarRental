@@ -18,7 +18,7 @@ const Homepage = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/product/getAllProducts"
+        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
       );
       if (data.data) {
         // console.log(data.data);

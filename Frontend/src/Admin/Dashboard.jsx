@@ -18,7 +18,7 @@ const Dashboard = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/product/getAllProducts"
+        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
       );
       if (data.data) {
         setProducts(data.data || []);
@@ -31,7 +31,7 @@ const Dashboard = () => {
   const fecthOrders = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/order/getallproducts",
+        "https://carrental-backend-dsbl.onrender.com/api/order/getallproducts",
         { withCredentials: true }
       );
       if (data.data) {

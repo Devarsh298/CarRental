@@ -8,7 +8,7 @@ const AdminManageBooking = () => {
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/api/order/getallproducts", {
+      const { data } = await axios.get("https://carrental-backend-dsbl.onrender.com/api/order/getallproducts", {
         withCredentials: true,
       });
       if (data.data) setAllOrders(data.data);
@@ -20,7 +20,7 @@ const AdminManageBooking = () => {
   const handleStatusChange = async (orderId, status) => {
     try {
       await axios.put(
-        "http://localhost:4000/api/order/changeStatus",
+        "https://carrental-backend-dsbl.onrender.com/api/order/changeStatus",
         { orderId, carStatus: status },
         { withCredentials: true }
       );

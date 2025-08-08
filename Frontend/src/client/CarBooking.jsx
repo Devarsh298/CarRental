@@ -27,7 +27,7 @@ export default function CarRentalBooking() {
       setError(null);
 
       const { data } = await axios.get(
-        `http://localhost:4000/api/product/getProductsById/${carId}`
+        `https://carrental-backend-dsbl.onrender.com/api/product/getProductsById/${carId}`
       );
 
       if (data.data) {
@@ -87,7 +87,7 @@ export default function CarRentalBooking() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/order/placeorder",
+        "https://carrental-backend-dsbl.onrender.com/api/order/placeorder",
         order,
         {
           withCredentials: true,

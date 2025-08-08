@@ -19,7 +19,7 @@ const Cars = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/product/getAllProducts"
+        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
       );
       // console.log(data.data);
 

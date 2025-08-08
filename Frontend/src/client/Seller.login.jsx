@@ -19,7 +19,7 @@ const SellerLogin = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/api/seller/login",
+        "https://carrental-backend-dsbl.onrender.com/api/seller/login",
         form,
         { withCredentials: true }
       );

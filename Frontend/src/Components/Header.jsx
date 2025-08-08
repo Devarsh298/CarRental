@@ -27,7 +27,7 @@ const Header = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       try {
         const { data } = await axios.get(
-          "http://localhost:4000/api/users/logout",
+          "https://carrental-backend-dsbl.onrender.com/api/users/logout",
           { withCredentials: true }
         );
         if (data.data) {

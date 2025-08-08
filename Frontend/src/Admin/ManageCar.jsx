@@ -20,7 +20,7 @@ const AdminManageCar = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/product/getAllProducts"
+        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
       );
       if (data.data) {
         setProducts(data.data || []);
@@ -68,7 +68,7 @@ const AdminManageCar = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `http://localhost:4000/api/product/updateProduct/${editingCar._id}`,
+        `https://carrental-backend-dsbl.onrender.com/api/product/updateProduct/${editingCar._id}`,
         formData,
         { withCredentials: true }
       );
@@ -93,7 +93,7 @@ const AdminManageCar = () => {
     if (window.confirm("Are you sure you want to delete this car?")) {
       try {
         const response = await axios.delete(
-          `http://localhost:4000/api/product/deleteProduct/${carId}`,
+          `https://carrental-backend-dsbl.onrender.com/api/product/deleteProduct/${carId}`,
           { withCredentials: true }
         );
 

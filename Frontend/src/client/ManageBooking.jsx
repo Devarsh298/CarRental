@@ -9,7 +9,7 @@ const ManageBooking = () => {
 
   const fecthOrders = async () => {
     try {
-      const { data } = await axios.get('http://localhost:4000/api/order/singleuserproduct', { withCredentials: true })
+      const { data } = await axios.get('https://carrental-backend-dsbl.onrender.com/api/order/singleuserproduct', { withCredentials: true })
       if (data.data) {
         console.log(data.data);
         setUserOrdes(data.data)
