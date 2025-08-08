@@ -9,10 +9,12 @@ import emailRouter from "./routes/email.routes.js";
 
 const app = express();
 
+const allowedOrigins = ["https://carrental-frontend-5dz6.onrender.com","http://localhost:5173"]
 app.use(cookieParser());
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
