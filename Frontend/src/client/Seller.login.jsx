@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const SellerLogin = () => {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -19,7 +21,7 @@ const SellerLogin = () => {
 
     try {
       const { data } = await axios.post(
-        "https://carrental-backend-dsbl.onrender.com/api/seller/login",
+        `${URI}/api/seller/login`,
         form,
         { withCredentials: true }
       );

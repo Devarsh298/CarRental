@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const UserLogin = () => {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -16,7 +18,7 @@ const UserLogin = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://carrental-backend-dsbl.onrender.com/api/users/login",
+        `${URI}/api/users/login`,
         form,
         { withCredentials: true }
       );
@@ -27,13 +29,14 @@ const UserLogin = () => {
           email: "",
           password: "",
         });
-     
+
         localStorage.setItem("token", data.data.token);
         localStorage.setItem("user", data.data.user.fullname);
         Navigate("/");
       }
     } catch (error) {
-      const errorMessage = error?.response?.data?.message || "Login failed. Please try again.";
+      const errorMessage =
+        error?.response?.data?.message || "Login failed. Please try again.";
       console.error(errorMessage);
       alert(errorMessage);
     }

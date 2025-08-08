@@ -5,6 +5,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Cars = () => {
+const URI = import.meta.env.VITE_BACKEND_URI
+
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [products, setProducts] = useState([]);
@@ -19,7 +21,7 @@ const Cars = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
+        `${URI}/api/product/getAllProducts`
       );
       // console.log(data.data);
 

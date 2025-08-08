@@ -4,6 +4,8 @@ import AdminSidebar from "../Components/AdminSidebar";
 import axios from "axios";
 
 const AdminManageCar = () => {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const [activeTab, setActiveTab] = useState("Manage Cars");
   const [products, setProducts] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -19,9 +21,7 @@ const AdminManageCar = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get(
-        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
-      );
+      const { data } = await axios.get(`${URI}/api/product/getAllProducts`);
       if (data.data) {
         setProducts(data.data || []);
       }
@@ -68,7 +68,7 @@ const AdminManageCar = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `https://carrental-backend-dsbl.onrender.com/api/product/updateProduct/${editingCar._id}`,
+        `${URI}/api/product/updateProduct/${editingCar._id}`,
         formData,
         { withCredentials: true }
       );
@@ -93,7 +93,7 @@ const AdminManageCar = () => {
     if (window.confirm("Are you sure you want to delete this car?")) {
       try {
         const response = await axios.delete(
-          `https://carrental-backend-dsbl.onrender.com/api/product/deleteProduct/${carId}`,
+          `${URI}/api/product/deleteProduct/${carId}`,
           { withCredentials: true }
         );
 

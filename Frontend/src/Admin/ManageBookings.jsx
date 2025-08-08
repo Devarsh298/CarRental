@@ -4,13 +4,18 @@ import AdminSidebar from "../Components/AdminSidebar";
 import axios from "axios";
 
 const AdminManageBooking = () => {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const [allOrders, setAllOrders] = useState([]);
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get("https://carrental-backend-dsbl.onrender.com/api/order/getallproducts", {
-        withCredentials: true,
-      });
+      const { data } = await axios.get(
+        `${URI}/api/order/getallproducts`,
+        {
+          withCredentials: true,
+        }
+      );
       if (data.data) setAllOrders(data.data);
     } catch (error) {
       alert(error.response?.data?.message || "Failed to fetch orders");
@@ -20,7 +25,7 @@ const AdminManageBooking = () => {
   const handleStatusChange = async (orderId, status) => {
     try {
       await axios.put(
-        "https://carrental-backend-dsbl.onrender.com/api/order/changeStatus",
+        `${URI}/api/order/changeStatus`,
         { orderId, carStatus: status },
         { withCredentials: true }
       );
@@ -44,9 +49,12 @@ const AdminManageBooking = () => {
 
         {/* Main Content */}
         <div className="flex-1 p-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Manage Bookings</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            Manage Bookings
+          </h1>
           <p className="text-gray-600 mb-4">
-            Track all customer bookings, approve or cancel requests, and manage booking statuses.
+            Track all customer bookings, approve or cancel requests, and manage
+            booking statuses.
           </p>
 
           <div className="bg-white rounded-lg border border-gray-200">

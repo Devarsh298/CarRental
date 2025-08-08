@@ -8,6 +8,8 @@ import AdminSidebar from "../Components/AdminSidebar";
 import axios from "axios";
 
 const Dashboard = () => {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const [activeTab, setActiveTab] = useState("Dashboard");
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -18,7 +20,7 @@ const Dashboard = () => {
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
-        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
+        `${URI}/api/product/getAllProducts`
       );
       if (data.data) {
         setProducts(data.data || []);
@@ -31,7 +33,7 @@ const Dashboard = () => {
   const fecthOrders = async () => {
     try {
       const { data } = await axios.get(
-        "https://carrental-backend-dsbl.onrender.com/api/order/getallproducts",
+        `${URI}/api/order/getallproducts`,
         { withCredentials: true }
       );
       if (data.data) {

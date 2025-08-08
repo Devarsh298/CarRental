@@ -5,6 +5,8 @@ import Header from "../Components/Header";
 import axios from "axios";
 
 export default function CarRentalBooking() {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ export default function CarRentalBooking() {
       setError(null);
 
       const { data } = await axios.get(
-        `https://carrental-backend-dsbl.onrender.com/api/product/getProductsById/${carId}`
+        `${URI}/api/product/getProductsById/${carId}`
       );
 
       if (data.data) {
@@ -37,7 +39,9 @@ export default function CarRentalBooking() {
       }
     } catch (error) {
       console.error("Failed to fetch product:", error);
-      setError(error.response?.data?.message || "Failed to fetch product details");
+      setError(
+        error.response?.data?.message || "Failed to fetch product details"
+      );
     } finally {
       setLoading(false);
     }
@@ -76,7 +80,7 @@ export default function CarRentalBooking() {
       totalPrice,
     };
     // console.log(product._id);
-    
+
     const userToken = localStorage.getItem("token");
 
     if (!userToken) {
@@ -87,7 +91,7 @@ export default function CarRentalBooking() {
 
     try {
       const { data } = await axios.post(
-        "https://carrental-backend-dsbl.onrender.com/api/order/placeorder",
+        `${URI}/api/order/placeorder`,
         order,
         {
           withCredentials: true,
@@ -100,7 +104,9 @@ export default function CarRentalBooking() {
       }
     } catch (error) {
       console.error("Booking error:", error);
-      alert(error?.response?.data?.message || "Booking failed. Please try again.");
+      alert(
+        error?.response?.data?.message || "Booking failed. Please try again."
+      );
     }
   };
 
@@ -134,7 +140,9 @@ export default function CarRentalBooking() {
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="text-red-500 text-6xl mb-4">⚠️</div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Car</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Error Loading Car
+            </h2>
             <p className="text-gray-600 mb-6">{error}</p>
             <div className="space-x-4">
               <button
@@ -163,8 +171,12 @@ export default function CarRentalBooking() {
         <Header />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Car Not Found</h2>
-            <p className="text-gray-600 mb-6">The requested car could not be found.</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Car Not Found
+            </h2>
+            <p className="text-gray-600 mb-6">
+              The requested car could not be found.
+            </p>
             <button
               onClick={handleBackToCars}
               className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
@@ -180,7 +192,6 @@ export default function CarRentalBooking() {
 
   const car = product;
   console.log(car);
-  
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -203,7 +214,8 @@ export default function CarRentalBooking() {
                 alt={`${car.brand} ${car.model}`}
                 className="w-full h-64 sm:h-80 object-cover"
                 onError={(e) => {
-                  e.target.src = "https://via.placeholder.com/800x400?text=Car+Image";
+                  e.target.src =
+                    "https://via.placeholder.com/800x400?text=Car+Image";
                 }}
               />
             </div>
@@ -212,29 +224,49 @@ export default function CarRentalBooking() {
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
                 {car.brand} {car.model}
               </h1>
-              <p className="text-gray-600 mb-6">{car.category} • {car.year}</p>
+              <p className="text-gray-600 mb-6">
+                {car.category} • {car.year}
+              </p>
 
               <div className="grid grid-cols-4 gap-4 mb-8">
-                <div className="text-center p-4 bg-gray-50 rounded-lg">👤 {car.seatingCapacity || "N/A"} Seats</div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">⚡ {car.fuelType || "N/A"}</div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">⚙️ {car.transmission || "N/A"}</div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">📍 {car.location || "N/A"}</div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  👤 {car.seatingCapacity || "N/A"} Seats
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  ⚡ {car.fuelType || "N/A"}
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  ⚙️ {car.transmission || "N/A"}
+                </div>
+                <div className="text-center p-4 bg-gray-50 rounded-lg">
+                  📍 {car.location || "N/A"}
+                </div>
               </div>
 
               <div className="mb-8">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Description</h2>
-                <p className="text-gray-600">{car.description || "No description available."}</p>
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                  Description
+                </h2>
+                <p className="text-gray-600">
+                  {car.description || "No description available."}
+                </p>
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Features</h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                  Features
+                </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {car.features?.length > 0 ? car.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-center">
-                      <span className="text-blue-600 mr-3 text-lg">✓</span>
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  )) : <p>No features listed.</p>}
+                  {car.features?.length > 0 ? (
+                    car.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center">
+                        <span className="text-blue-600 mr-3 text-lg">✓</span>
+                        <span className="text-gray-700">{feature}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No features listed.</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -244,13 +276,17 @@ export default function CarRentalBooking() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-8">
               <div className="text-center mb-6">
-                <div className="text-3xl font-bold text-gray-900">${car.dailyPrice || 0}</div>
+                <div className="text-3xl font-bold text-gray-900">
+                  ${car.dailyPrice || 0}
+                </div>
                 <div className="text-gray-600">per day</div>
               </div>
 
               <div className="space-y-4 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Pickup Date</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Pickup Date
+                  </label>
                   <input
                     type="date"
                     value={pickupDate}
@@ -260,7 +296,9 @@ export default function CarRentalBooking() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Return Date</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Return Date
+                  </label>
                   <input
                     type="date"
                     value={returnDate}
@@ -275,12 +313,21 @@ export default function CarRentalBooking() {
                 <div className="mb-4 p-4 bg-gray-50 rounded-lg">
                   <div className="flex justify-between mb-2">
                     <span className="text-gray-600">Days:</span>
-                    <span className="font-medium">{Math.ceil((new Date(returnDate) - new Date(pickupDate)) / (1000 * 60 * 60 * 24))}</span>
+                    <span className="font-medium">
+                      {Math.ceil(
+                        (new Date(returnDate) - new Date(pickupDate)) /
+                          (1000 * 60 * 60 * 24)
+                      )}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Total:</span>
                     <span className="font-bold text-lg">
-                      ${Math.ceil((new Date(returnDate) - new Date(pickupDate)) / (1000 * 60 * 60 * 24)) * (car.dailyPrice || 0)}
+                      $
+                      {Math.ceil(
+                        (new Date(returnDate) - new Date(pickupDate)) /
+                          (1000 * 60 * 60 * 24)
+                      ) * (car.dailyPrice || 0)}
                     </span>
                   </div>
                 </div>
@@ -290,7 +337,6 @@ export default function CarRentalBooking() {
                 onClick={handleBookNow}
                 disabled={!car._id}
                 className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400"
-                
               >
                 {car._id ? "Book Now" : "Loading..."}
               </button>

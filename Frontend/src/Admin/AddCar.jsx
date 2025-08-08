@@ -5,6 +5,8 @@ import AdminHeader from "../Components/AdminHeader";
 import AdminSidebar from "../Components/AdminSidebar";
 
 const AddCar = () => {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const [activeTab, setActiveTab] = useState("Add car");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,16 +45,12 @@ const AddCar = () => {
     try {
       const token = localStorage.getItem("sellerToken");
       if (token) {
-        const { data } = await axios.post(
-          "https://carrental-backend-dsbl.onrender.com/api/product/add",
-          formData,
-          {
-            withCredentials: true,
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const { data } = await axios.post(`${URI}/api/product/add`, formData, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         alert("Car listed successfully!");
         // console.log(data.data);
@@ -204,7 +202,13 @@ const AddCar = () => {
                     name="fuelType"
                     value={formData.fuelType}
                     onChange={handleChange}
-                    options={["Petrol", "Gasoline", "Diesel", "Electric", "Hybrid"]}
+                    options={[
+                      "Petrol",
+                      "Gasoline",
+                      "Diesel",
+                      "Electric",
+                      "Hybrid",
+                    ]}
                   />
                 </div>
 

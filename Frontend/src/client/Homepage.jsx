@@ -7,6 +7,8 @@ import mainCarImage from "../assets/main_car.png";
 import carImage1 from "../assets/car_image1.png";
 
 const Homepage = () => {
+  const URI = import.meta.env.VITE_BACKEND_URI;
+
   const [pickupLocation, setPickupLocation] = useState("");
   const [pickupDate, setPickupDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
@@ -17,9 +19,7 @@ const Homepage = () => {
   // Fetch products from backend
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get(
-        "https://carrental-backend-dsbl.onrender.com/api/product/getAllProducts"
-      );
+      const { data } = await axios.get(`${URI}/api/product/getAllProducts`);
       if (data.data) {
         // console.log(data.data);
 
@@ -227,11 +227,7 @@ const Homepage = () => {
             </button>
           </div>
           <div>
-            <img
-              src={carImage1}
-              alt="BMW luxury car"
-              className="w-full"
-            />
+            <img src={carImage1} alt="BMW luxury car" className="w-full" />
           </div>
         </div>
       </section>
