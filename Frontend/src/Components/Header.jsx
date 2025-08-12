@@ -67,7 +67,7 @@ const Header = () => {
               Home
             </a>
             <a
-              href={`VITE_BACKEND_URI/cars`}
+              href={`https://carrental-backend-dsbl.onrender.com/cars`}
               className="nav-link text-gray-700 hover:text-blue-600"
             >
               Cars
