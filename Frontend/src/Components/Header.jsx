@@ -67,7 +67,7 @@ const Header = () => {
               Home
             </a>
             <a
-              href="/cars"
+              href={`VITE_BACKEND_URI/cars`}
               className="nav-link text-gray-700 hover:text-blue-600"
             >
               Cars
