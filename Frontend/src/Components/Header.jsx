@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import logo from "../assets/logo.svg?url";
+import logo from "../assets/logo.svg?url";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 const SearchIcon = () => (
   <svg
@@ -59,25 +59,25 @@ const Header = () => {
       <nav className="header-nav shadow-sm px-6 py-4 bg-gradient-to-r from-gray-100 to-gray-200">
         <div className="nav-container max-w-7xl mx-auto flex justify-between items-center">
           <div className="logo-section flex items-center space-x-2">
-            {/* <img src={logo} alt="Logo" className="w-auto object-contain" /> */}
+            <img src={logo} alt="Logo" className="w-auto object-contain" />
           </div>
 
           <div className="nav-links items-center hidden md:flex space-x-8">
-            <a href="/" className="nav-link text-gray-700 hover:text-blue-600">
+            <Link to="/" className="nav-link text-gray-700 hover:text-blue-600">
               Home
-            </a>
-            <a
-              href={`VITE_BACKEND_URI/cars`}
+            </Link>
+            <Link
+              to="/cars"
               className="nav-link text-gray-700 hover:text-blue-600"
             >
               Cars
-            </a>
-            <a
-              href="/Managebooking"
+            </Link>
+            <Link
+              to="/Managebooking"
               className="nav-link text-gray-700 hover:text-blue-600"
             >
               My Bookings
-            </a>
+            </Link>
             <div className="search-nav-wrapper relative">
               <div className="search-nav-icon absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
                 <SearchIcon />
@@ -103,7 +103,7 @@ const Header = () => {
               </>
             ) : (
               <button className="login-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                <a href="/login">Login</a>
+                <Link to="/login">Login</Link>
               </button>
             )}
           </div>
