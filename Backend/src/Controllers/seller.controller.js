@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 
 const option = {
   httpOnly: true,
-  secure: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "None",
   maxAge: 1000 * 60 * 60 * 24 * 1,
 };
 
@@ -37,10 +38,11 @@ const sellerlogin = asyncHandler(async (req, res) => {
   }
 });
 
-const sellerLogout = asyncHandler(async(req,res)=>{
-    res.status(200)
-       .clearCookie("sellerToken",option)
-       .json(new ApiResponse(200, {}, "Seller logout Successfully"));
-})
+const sellerLogout = asyncHandler(async (req, res) => {
+  res
+    .status(200)
+    .clearCookie("sellerToken", option)
+    .json(new ApiResponse(200, {}, "Seller logout Successfully"));
+});
 
-export { sellerlogin,sellerLogout };
+export { sellerlogin, sellerLogout };
