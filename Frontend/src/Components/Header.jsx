@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import logo from "../assets/logo.svg?url";
+import logo from "../assets/logo.svg?url";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -59,7 +59,7 @@ const Header = () => {
       <nav className="header-nav shadow-sm px-6 py-4 bg-gradient-to-r from-gray-100 to-gray-200">
         <div className="nav-container max-w-7xl mx-auto flex justify-between items-center">
           <div className="logo-section flex items-center space-x-2">
-            {/* <img src={logo} alt="Logo" className="w-auto object-contain" /> */}
+            <img src={logo} alt="Logo" className="w-auto object-contain" />
           </div>
 
           <div className="nav-links items-center hidden md:flex space-x-8">
@@ -67,7 +67,7 @@ const Header = () => {
               Home
             </a>
             <a
-              href={`https://carrental-backend-dsbl.onrender.com/cars`}
+              href="/cars"
               className="nav-link text-gray-700 hover:text-blue-600"
             >
               Cars
