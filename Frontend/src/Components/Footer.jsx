@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <div>
@@ -124,6 +124,8 @@ const Footer = () => {
               <a href="#" className="legal-link hover:text-white">
                 Cookies
               </a>
+              <Link to="/admin"> Admin
+              </Link>
             </div>
           </div>
         </div>
