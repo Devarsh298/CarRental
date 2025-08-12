@@ -124,7 +124,7 @@ const Footer = () => {
               <a href="#" className="legal-link hover:text-white">
                 Cookies
               </a>
-              <Link to="/admin"> Admin
+              <Link to="/admin" className="legal-link hover:text-white"> Admin
               </Link>
             </div>
           </div>
