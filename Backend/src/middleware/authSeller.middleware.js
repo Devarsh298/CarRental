@@ -5,7 +5,6 @@ import { ApiError } from "../utils/Apierror.js";
 const authSeller = async (req, res, next) => {
   try {
     const token = req?.cookies?.sellerToken;
-    console.log(token);
     
     if (!token) {
       throw new ApiError(400, "Unauthorized Access.");
