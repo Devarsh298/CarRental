@@ -6,8 +6,8 @@ import jwt from "jsonwebtoken";
 const option = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "None",
-  maxAge: 1000 * 60 * 60 * 24 * 1,
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Strict",
+  maxAge: 1000 * 60 * 60 * 24 * 7,
 };
 
 const sellerlogin = asyncHandler(async (req, res) => {

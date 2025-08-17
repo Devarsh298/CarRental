@@ -180,7 +180,7 @@ const Dashboard = () => {
                           {booking.userId.fullname}
                         </p>
                         <p className="text-sm text-gray-600">
-                          {booking.item.brand}
+                          {booking?.item?.brand}
                         </p>
                       </div>
                       <div className="text-right">

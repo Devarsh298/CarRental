@@ -18,7 +18,7 @@ const AdminManageBooking = () => {
       );
       if (data.data) setAllOrders(data.data);
     } catch (error) {
-      alert(error.response?.data?.message || "Failed to fetch orders");
+      alert(error?.response?.data?.message || "Failed to fetch orders");
     }
   };
 
@@ -74,7 +74,7 @@ const AdminManageBooking = () => {
               >
                 <div>{order.userId.fullname}</div>
                 <div className="truncate">{order._id}</div>
-                <div>{order.item.brand}</div>
+                <div>{order?.item?.brand}</div>
                 <div>
                   {new Date(order.pickupDate).toLocaleDateString()} -{" "}
                   {new Date(order.returnDate).toLocaleDateString()}
