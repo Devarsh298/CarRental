@@ -9,15 +9,18 @@ import emailRouter from "./routes/email.routes.js";
 
 const app = express();
 
-const allowedOrigins = ["https://carrental-frontend-5dz6.onrender.com","http://localhost:5173"]
-app.use(cookieParser());
-
+const allowedOrigins = [
+  "https://carrental-frontend-5dz6.onrender.com",
+  "http://localhost:5173",
+];
 app.use(
   cors({
     origin: allowedOrigins,
     credentials: true,
   })
 );
+app.use(cookieParser());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
@@ -25,10 +28,9 @@ app.use(express.static("public"));
 // routes
 app.use("/api/users", userRouter);
 app.use("/api/seller", sellerRouter);
-app.use("/api/product",productRouter);
-app.use("/api/order",orderRouter);
-app.use("/api/email",emailRouter)
-
+app.use("/api/product", productRouter);
+app.use("/api/order", orderRouter);
+app.use("/api/email", emailRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -45,6 +47,5 @@ app.use((err, req, res, next) => {
 // app.use("/", (req, res) => {
 //   res.send("API is working");
 // });
-
 
 export { app };
