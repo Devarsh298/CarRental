@@ -10,6 +10,7 @@ import emailRouter from "./routes/email.routes.js";
 const app = express();
 
 const allowedOrigins = ["https://carrental-frontend-5dz6.onrender.com","http://localhost:5173"]
+app.use(cookieParser());
 
 app.use(
   cors({
@@ -20,7 +21,6 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
-app.use(cookieParser());
 
 // routes
 app.use("/api/users", userRouter);
