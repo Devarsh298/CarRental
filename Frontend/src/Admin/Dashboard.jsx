@@ -149,11 +149,11 @@ const Dashboard = () => {
                       </p>
                     </div>
                     <div className="text-2xl">
-                      {/* <img
+                      <img
                         src={stat.icon}
                         alt={stat.title}
                         className="w-6 h-6"
-                      /> */}
+                      />
                     </div>
                   </div>
                 </div>
